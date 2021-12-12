@@ -62,6 +62,7 @@ cmd(':au FocusLost * :wa')
 -- Theme
 v.cursorline = true
 v.background = 'dark'
+v.termguicolors = true
 cmd('colorscheme gruvbox')
 cmd('highlight Normal guibg=none ctermbg=none')
 cmd('highlight clear CursorLine')
