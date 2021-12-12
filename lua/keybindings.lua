@@ -39,3 +39,8 @@ bind('n', '<Leader>fh', '<cmd>Telescope help_tags<cr>', { noremap = false, silen
 bind('n', '<Leader>gc', '<cmd>Telescope git_commits<cr>', { noremap = false, silent = true})
 bind('n', '<Leader>gs', '<cmd>Telescope git_stash<cr>', { noremap = false, silent = true})
 bind('n', '<Leader>gb', '<cmd>Telescope git_branches<cr>', { noremap = false, silent = true})
+
+-- NvimTree
+bind('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap = false, silent = true})
+bind('n', '<Leader>r', ':NvimTreeRefresh<CR>', { noremap = false, silent = true})
+bind('n', '<Leader>n', ':NvimTreeFindFile<CR>', { noremap = false, silent = true})

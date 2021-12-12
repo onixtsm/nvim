@@ -31,6 +31,7 @@ return require('packer').startup(function()
 
   use 'norcalli/nvim-colorizer.lua'
 
+  use 'kyazdani42/nvim-tree.lua'
   -- Theme
   use 'gruvbox-community/gruvbox'
 
