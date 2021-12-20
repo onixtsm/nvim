@@ -1,7 +1,7 @@
 local v = vim.o
-local cmd = vim.api.nvim_command
+local cmd = vim.cmd
 
-v.clipboard = v.clipboard..'unnamedplus'
+v.clipboard = v.clipboard .. 'unnamedplus'
 
 v.number = true
 v.nu = true
@@ -31,6 +31,7 @@ v.conceallevel = 2
 v.showtabline = 2
 
 v.mouse = 'a'
+v.whichwrap = v.whichwrap .. '<,>,[,],h,l'
 
 v.expandtab = true                          -- Converts tabs to spaces
 v.smartindent = true                        -- Makes indenting smart
@@ -44,7 +45,6 @@ v.splitbelow = false
 v.updatetime = 300
 v.timeoutlen = 500
 
---v.iskeyword = v.iskeyword..'-'
 v.autowrite = true
 
 v.list = false
@@ -57,6 +57,7 @@ v.path = v.path..'**'
 
 
 cmd(':au FocusLost * :wa')
+cmd(':set iskeyword+=-')
 
 
 -- Theme
