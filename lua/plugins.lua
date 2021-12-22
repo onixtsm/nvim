@@ -4,19 +4,27 @@ local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvi
 return require('packer').startup(function()
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
+  use 'nvim-lua/popup.nvim'
+  use 'nvim-lua/plenary.nvim'
 
-  -- Native LSP I guess
+  -- Completion
   use 'hrsh7th/nvim-cmp'
 
   -- nvim-cmp dependencies
-  use 'neovim/nvim-lspconfig'
-  use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-cmdline'
-  use 'hrsh7th/vim-vsnip'
-  use 'hrsh7th/cmp-vsnip'
+  use 'saadparwaiz1/cmp_luasnip' -- snippet completions
+  use 'David-Kunz/cmp-npm'
+  use 'hrsh7th/cmp-nvim-lsp'
 
+  -- Snippets
+  use 'L3MON4D3/LuaSnip' --snippet engine
+  use 'rafamadriz/friendly-snippets' -- a bunch of snippets to use
+
+  -- LSP
+  use 'neovim/nvim-lspconfig'
+  use 'williamboman/nvim-lsp-installer'
 
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 

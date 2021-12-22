@@ -3,4 +3,4 @@ require('lsp')
 require('settings')
 require('keybindings')
 require('plugin_settings')
-
+require('cmp.cmp')
