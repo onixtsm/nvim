@@ -47,6 +47,9 @@ return require('packer').startup(function()
   use 'akinsho/bufferline.nvim'
   use 'moll/vim-bbye'
 
+  use 'numToStr/Comment.nvim'
+  use 'JoosepAlviste/nvim-ts-context-commentstring'
+
   -- Theme
   use 'gruvbox-community/gruvbox'
 

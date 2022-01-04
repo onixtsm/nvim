@@ -46,6 +46,6 @@ bind('n', '<Leader>r', ':NvimTreeRefresh<CR>', { noremap = false, silent = true}
 bind('n', '<Leader>n', ':NvimTreeFindFile<CR>', { noremap = false, silent = true})
 
 -- Bufferline
-bind('n', '<Leader>c', ':Bdelete<CR>', { noremap = false, silent = true})
+bind('n', '<Leader>c', ':w|Bdelete<CR>', { noremap = false, silent = true})
 bind('n', '<S-l>', ':BufferLineCycleNext<CR>', { noremap = false, silent = true})
 bind('n', '<S-h>', ':BufferLineCyclePrev<CR>', { noremap = false, silent = true})
