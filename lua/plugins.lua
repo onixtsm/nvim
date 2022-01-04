@@ -37,9 +37,13 @@ return require('packer').startup(function()
     requires = { {'nvim-lua/plenary.nvim'} }
   }
 
+  use 'windwp/nvim-autopairs'
+
   use 'norcalli/nvim-colorizer.lua'
 
   use 'kyazdani42/nvim-tree.lua'
+
+  use 'lewis6991/gitsigns.nvim'
   -- Theme
   use 'gruvbox-community/gruvbox'
 
