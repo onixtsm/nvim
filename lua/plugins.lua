@@ -17,6 +17,7 @@ return require('packer').startup(function()
   use 'saadparwaiz1/cmp_luasnip' -- snippet completions
   use 'David-Kunz/cmp-npm'
   use 'hrsh7th/cmp-nvim-lsp'
+  use 'kyazdani42/nvim-web-devicons'
 
   -- Snippets
   use 'L3MON4D3/LuaSnip' --snippet engine
@@ -28,10 +29,8 @@ return require('packer').startup(function()
 
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = {'kyazdani42/nvim-web-devicons', opt = true}
-  }
+  use 'nvim-lualine/lualine.nvim'
+
   use {
     'nvim-telescope/telescope.nvim',
     requires = { {'nvim-lua/plenary.nvim'} }
@@ -44,6 +43,10 @@ return require('packer').startup(function()
   use 'kyazdani42/nvim-tree.lua'
 
   use 'lewis6991/gitsigns.nvim'
+
+  use 'akinsho/bufferline.nvim'
+  use 'moll/vim-bbye'
+
   -- Theme
   use 'gruvbox-community/gruvbox'
 
