@@ -32,7 +32,7 @@ bind('n', '<M-h>', ':vertical resize -2<CR>', { noremap = true, silent = true})
 bind('n', '<M-l>', ':vertical resize +2<CR>', { noremap = false, silent = true})
 
 -- Telescope
-bind('n', '<Leader>ff', "<cmd>Telescope find_files<cr>", { noremap = false, silent = true})
+bind('n', '<Leader>ff', '<cmd>Telescope find_files<cr>', { noremap = false, silent = true})
 bind('n', '<Leader>fg', '<cmd>Telescope live_grep<cr>', { noremap = false, silent = true})
 bind('n', '<Leader>fb', '<cmd>Telescope buffers<cr>', { noremap = false, silent = true})
 bind('n', '<Leader>fh', '<cmd>Telescope help_tags<cr>', { noremap = false, silent = true})
@@ -49,3 +49,5 @@ bind('n', '<Leader>n', ':NvimTreeFindFile<CR>', { noremap = false, silent = true
 bind('n', '<Leader>c', ':w|Bdelete<CR>', { noremap = false, silent = true})
 bind('n', '<S-l>', ':BufferLineCycleNext<CR>', { noremap = false, silent = true})
 bind('n', '<S-h>', ':BufferLineCyclePrev<CR>', { noremap = false, silent = true})
+
+bind('n', '<Leader>l', ':lua vim.lsp.buf.formatting_sync()<CR>', { noremap = false, silent = true})
