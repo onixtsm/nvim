@@ -43,7 +43,7 @@ v.splitright = true
 v.splitbelow = false
 
 v.updatetime = 300
-v.timeoutlen = 500
+v.timeoutlen = 100 -- no whickkey v.timeoutlen = 500
 
 v.autowrite = true
 

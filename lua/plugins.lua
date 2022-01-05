@@ -48,6 +48,7 @@ return require('packer').startup(function()
   use 'akinsho/bufferline.nvim'
   use 'moll/vim-bbye'
 
+  use 'folke/which-key.nvim'
   use 'numToStr/Comment.nvim'
   use 'JoosepAlviste/nvim-ts-context-commentstring'
 
