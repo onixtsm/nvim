@@ -5,7 +5,7 @@ bind('n', '<Space>', '<NOP>', { noremap = true, silent = true})
 vim.g.mapleader = ' '
 
 -- No hl
-bind('n', '<Leader>h', ':set hlsearch!<CR>', { noremap = true, silent = true})
+bind('n', '<Leader>h', ':nohl<CR>', { noremap = true, silent = true})
 
 -- Window movement
 bind('n', '<C-h>', '<C-w>h', { noremap = true })
@@ -30,6 +30,7 @@ bind('n', '<M-j>', ':resize -2<CR>', { noremap = true, silent = true})
 bind('n', '<M-k>', ':resize +2<CR>', { noremap = true, silent = true})
 bind('n', '<M-h>', ':vertical resize -2<CR>', { noremap = true, silent = true})
 bind('n', '<M-l>', ':vertical resize +2<CR>', { noremap = false, silent = true})
+bind('n', '<M-l>', '<C-w>=', { noremap = false, silent = true})
 
 -- Telescope
 bind('n', '<Leader>ff', '<cmd>Telescope find_files<cr>', { noremap = false, silent = true})
