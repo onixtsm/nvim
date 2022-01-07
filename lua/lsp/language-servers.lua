@@ -62,6 +62,9 @@ lspconfig.html.setup {
 }
 
 lspconfig.ccls.setup {
+
+  root_dir = lspconfig.util.root_pattern("compile_commands.json", ".ccls", ".git", "Makefile", "build.sh");
+
   init_options = {
     compilationDatabaseDirectory = "build";
     index = {
@@ -70,7 +73,6 @@ lspconfig.ccls.setup {
     clang = {
       excludeArgs = { "-frounding-math"} ;
     };
-    root_dir = lspconfig.util.root_pattern("compile_commands.json", ".ccls", ".git", "Makefile", "build.sh")
   }
 }
 
