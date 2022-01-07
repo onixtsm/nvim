@@ -5,20 +5,26 @@ bind('n', '<Space>', '<NOP>', { noremap = true, silent = true})
 vim.g.mapleader = ' '
 
 -- No hl
-bind('n', '<Leader>h', ':nohl<CR>', { noremap = true, silent = true})
+bind('n', '<Leader>s', ':nohl<CR>', { noremap = true, silent = true})
 
 -- Window movement
 bind('n', '<C-h>', '<C-w>h', { noremap = true })
 bind('n', '<C-j>', '<C-w>j', { noremap = true })
 bind('n', '<C-k>', '<C-w>k', { noremap = true })
 bind('n', '<C-l>', '<C-w>l', { noremap = true })
+bind('n', '<C-q>', '<C-w>q', { noremap = true })
 
 -- Nice intendings
 bind('v', '<', '<gv', { noremap = true, silent = true})
 bind('v', '>', '>gv', { noremap = true, silent = true})
 
 bind('n', '!', ':!', { noremap = true} )
+-- Man
+bind('n', '<Leader>m', ':Man<CR>', { noremap = true} )
+bind('n', '<Leader>M', ':Man<CR>', { noremap = true} )
 
+-- build
+bind('n', '<Leader>b', ':make <CR>', { noremap = true} )
 
 bind('c', 'w!!', '!sudo tee > /dev/null %', {})
 
@@ -47,7 +53,7 @@ bind('n', '<Leader>r', ':NvimTreeRefresh<CR>', { noremap = false, silent = true}
 bind('n', '<Leader>n', ':NvimTreeFindFile<CR>', { noremap = false, silent = true})
 
 -- Bufferline
-bind('n', '<Leader>c', ':w|Bdelete<CR>', { noremap = false, silent = true})
+bind('n', '<Leader>c', ':up|Bdelete<CR>', { noremap = false, silent = true})
 bind('n', '<S-l>', ':BufferLineCycleNext<CR>', { noremap = false, silent = true})
 bind('n', '<S-h>', ':BufferLineCyclePrev<CR>', { noremap = false, silent = true})
 

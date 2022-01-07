@@ -54,7 +54,7 @@ v.compatible = false
 
 v.wildmenu = true
 v.path = v.path..'**'
-v.makeprg = 'build.sh'
+v.makeprg = './build.sh'
 
 
 cmd(':au FocusLost * :wa')

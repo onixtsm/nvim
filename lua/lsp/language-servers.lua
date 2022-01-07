@@ -1,3 +1,5 @@
+local lspconfig = require('lspconfig')
+
 -- Setup lspconfig.
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
@@ -9,7 +11,7 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-require'lspconfig'.sumneko_lua.setup {
+lspconfig.sumneko_lua.setup {
   settings = {
     Lua = {
       runtime = {
@@ -35,7 +37,7 @@ require'lspconfig'.sumneko_lua.setup {
   },
 }
 
-require'lspconfig'.solargraph.setup{
+lspconfig.solargraph.setup{
   capabilities = capabilities,
   settings = {
     solorgraph = {
@@ -44,22 +46,22 @@ require'lspconfig'.solargraph.setup{
   }
 }
 
-require'lspconfig'.tsserver.setup {
+lspconfig.tsserver.setup {
   capabilities = capabilities,
 
 }
 
-require'lspconfig'.cssls.setup {
+lspconfig.cssls.setup {
   capabilities = capabilities,
 }
 
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-require'lspconfig'.html.setup {
+lspconfig.html.setup {
   capabilities = capabilities,
 }
 
-require'lspconfig'.ccls.setup {
+lspconfig.ccls.setup {
   init_options = {
     compilationDatabaseDirectory = "build";
     index = {
@@ -68,9 +70,10 @@ require'lspconfig'.ccls.setup {
     clang = {
       excludeArgs = { "-frounding-math"} ;
     };
+    root_dir = lspconfig.util.root_pattern("compile_commands.json", ".ccls", ".git", "Makefile", "build.sh")
   }
 }
 
 -- TODO: add Java
 
-require'lspconfig'.gopls.setup{}
+lspconfig.gopls.setup{}
