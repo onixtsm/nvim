@@ -24,7 +24,7 @@ bind('n', '<Leader>m', ':Man<CR>', { noremap = true} )
 bind('n', '<Leader>M', ':Man<CR>', { noremap = true} )
 
 -- build
-bind('n', '<Leader>b', ':make <CR>', { noremap = true} )
+bind('n', '<Leader>b', ':make<CR>', { noremap = true} )
 
 bind('c', 'w!!', '!sudo tee > /dev/null %', {})
 
@@ -36,7 +36,7 @@ bind('n', '<M-j>', ':resize -2<CR>', { noremap = true, silent = true})
 bind('n', '<M-k>', ':resize +2<CR>', { noremap = true, silent = true})
 bind('n', '<M-h>', ':vertical resize -2<CR>', { noremap = true, silent = true})
 bind('n', '<M-l>', ':vertical resize +2<CR>', { noremap = false, silent = true})
-bind('n', '<M-l>', '<C-w>=', { noremap = false, silent = true})
+bind('n', '<M-;>', '<C-w>=', { noremap = false, silent = true})
 
 -- Telescope
 bind('n', '<Leader>ff', '<cmd>Telescope find_files<cr>', { noremap = false, silent = true})

@@ -25,7 +25,6 @@ return require('packer').startup(function()
 
   -- LSP
   use 'neovim/nvim-lspconfig'
-  use 'williamboman/nvim-lsp-installer'
   use 'jose-elias-alvarez/null-ls.nvim'
 
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
@@ -51,7 +50,7 @@ return require('packer').startup(function()
   use 'folke/which-key.nvim'
   use 'numToStr/Comment.nvim'
   use 'JoosepAlviste/nvim-ts-context-commentstring'
-
+  use 'windwp/nvim-ts-autotag'
   -- Theme
   use 'gruvbox-community/gruvbox'
 

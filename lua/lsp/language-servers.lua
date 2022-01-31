@@ -45,12 +45,13 @@ lspconfig.solargraph.setup{
     }
   }
 }
-
+-- npm install -g typescript typescript-language-server
 lspconfig.tsserver.setup {
   capabilities = capabilities,
 
 }
 
+-- npm i -g vscode-langservers-extracted
 lspconfig.cssls.setup {
   capabilities = capabilities,
 }
