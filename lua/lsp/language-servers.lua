@@ -41,7 +41,7 @@ lspconfig.solargraph.setup{
   capabilities = capabilities,
   settings = {
     solorgraph = {
-      autoforamt = true
+      autoformat = true
     }
   }
 }
@@ -79,4 +79,7 @@ lspconfig.ccls.setup {
 
 -- TODO: add Java
 
-lspconfig.gopls.setup{}
+lspconfig.gopls.setup{
+    root_dir = lspconfig.util.root_pattern("go.mod", "build/", ".git", "Makefile", "build.sh");
+}
+
