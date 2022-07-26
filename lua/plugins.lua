@@ -25,7 +25,7 @@ return require('packer').startup(function()
 
   -- LSP
   use 'neovim/nvim-lspconfig'
-  use 'jose-elias-alvarez/null-ls.nvim'
+  -- use 'jose-elias-alvarez/null-ls.nvim'
 
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 

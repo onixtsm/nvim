@@ -1,7 +1,10 @@
 local v = vim.o
 local cmd = vim.cmd
 
+-- if (os.getenv("XGD_SESSION_TYPE") == "tty")
+-- then
 v.clipboard = v.clipboard .. 'unnamedplus'
+-- end
 
 v.number = true
 v.nu = true
