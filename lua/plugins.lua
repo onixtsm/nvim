@@ -2,18 +2,18 @@
 local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 
 return require('packer').startup(function()
-  -- Packer can manage itself
+-- Packer can manage itself
   use 'wbthomason/packer.nvim'
   use 'nvim-lua/popup.nvim'
   use 'nvim-lua/plenary.nvim'
 
-  -- LSP
+-- LSP
   use 'neovim/nvim-lspconfig'
 
-  -- Completion
+-- Completion
   use 'hrsh7th/nvim-cmp'
 
-  -- nvim-cmp dependencies
+-- nvim-cmp dependencies
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-nvim-lsp'
@@ -21,9 +21,16 @@ return require('packer').startup(function()
 -- Devicons
   use 'kyazdani42/nvim-web-devicons'
 
-  -- Snippets
+-- Snippets
   use 'L3MON4D3/LuaSnip' --snippet engine
   use 'saadparwaiz1/cmp_luasnip' -- snippet completions
+
+-- Debugging
+  use 'mfussenegger/nvim-dap'
+  use 'leoluz/nvim-dap-go'
+  use 'rcarriga/nvim-dap-ui'
+  use 'theHamsta/nvim-dap-virtual-text'
+  use 'nvim-telescope/telescope-dap.nvim'
 
 --  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
@@ -58,5 +65,6 @@ return require('packer').startup(function()
 -- use 'windwp/nvim-ts-autotag'
   -- Theme
   use 'gruvbox-community/gruvbox'
+  use 'xiyaowong/nvim-transparent'
 
 end)
