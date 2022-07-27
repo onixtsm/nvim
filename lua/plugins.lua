@@ -1,4 +1,3 @@
-
 local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 
 return require('packer').startup(function()
@@ -32,7 +31,7 @@ return require('packer').startup(function()
   use 'theHamsta/nvim-dap-virtual-text'
   use 'nvim-telescope/telescope-dap.nvim'
 
---  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
 -- Bottom line
   use 'nvim-lualine/lualine.nvim'
