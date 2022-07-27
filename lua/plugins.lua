@@ -7,50 +7,55 @@ return require('packer').startup(function()
   use 'nvim-lua/popup.nvim'
   use 'nvim-lua/plenary.nvim'
 
+  -- LSP
+  use 'neovim/nvim-lspconfig'
+
   -- Completion
   use 'hrsh7th/nvim-cmp'
 
   -- nvim-cmp dependencies
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-cmdline'
-  use 'saadparwaiz1/cmp_luasnip' -- snippet completions
-  use 'David-Kunz/cmp-npm'
   use 'hrsh7th/cmp-nvim-lsp'
+
+-- Devicons
   use 'kyazdani42/nvim-web-devicons'
 
   -- Snippets
   use 'L3MON4D3/LuaSnip' --snippet engine
-  use 'rafamadriz/friendly-snippets' -- a bunch of snippets to use
+  use 'saadparwaiz1/cmp_luasnip' -- snippet completions
 
-  -- LSP
-  use 'neovim/nvim-lspconfig'
-  -- use 'jose-elias-alvarez/null-ls.nvim'
+--  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-
+-- Bottom line
   use 'nvim-lualine/lualine.nvim'
 
-  use {
-    'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'} }
-  }
+-- A fuzzyfinder
+  use 'nvim-telescope/telescope.nvim'
+-- Dependencies for better usage
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
+-- Automaticly close brackets
   use 'windwp/nvim-autopairs'
 
+-- Show colors of hex (#FFF)
   use 'norcalli/nvim-colorizer.lua'
 
+-- File manager
   use 'kyazdani42/nvim-tree.lua'
 
-  use 'lewis6991/gitsigns.nvim'
+--  use 'lewis6991/gitsigns.nvim'
 
   use 'akinsho/bufferline.nvim'
   use 'moll/vim-bbye'
 
-  use 'folke/which-key.nvim'
+--  use 'folke/which-key.nvim'
+-- Comments
   use 'numToStr/Comment.nvim'
-  use 'JoosepAlviste/nvim-ts-context-commentstring'
-  use 'windwp/nvim-ts-autotag'
+-- Comments for ts (.jsx)
+--  use 'JoosepAlviste/nvim-ts-context-commentstring'
+-- Auto close tag (requires treesitter)
+-- use 'windwp/nvim-ts-autotag'
   -- Theme
   use 'gruvbox-community/gruvbox'
 

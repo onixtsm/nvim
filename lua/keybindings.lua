@@ -1,4 +1,4 @@
-local bind = vim.api.nvim_set_keymap
+local bind = vim.keymap.set
 
 -- Leader
 bind('n', '<Space>', '<NOP>', { noremap = true, silent = true})
@@ -19,17 +19,16 @@ bind('v', '<', '<gv', { noremap = true, silent = true})
 bind('v', '>', '>gv', { noremap = true, silent = true})
 
 bind('n', '!', ':!', { noremap = true} )
--- Man
-bind('n', '<Leader>m', ':Man<CR>', { noremap = true} )
-bind('n', '<Leader>M', ':Man<CR>', { noremap = true} )
 
 -- build
-bind('n', '<Leader>b', ':make<CR>', { noremap = true} )
+--bind('n', '<Leader>b', ':make<CR>', { noremap = true} )
 
-bind('c', 'w!!', '!sudo tee > /dev/null %', {})
+--Quickfixlist
+bind('n', '<C-Down>', '<cmd>cnext<cr>', { noremap = true, silent = true})
+bind('n', '<C-Up>', '<cmd>cprevious<cr>', { noremap = true, silent = true})
 
 -- Source
-bind('n', '<Leader><Leader>', ':source $MYVIMRC<CR>', { noremap = true })
+bind('n', '<Leader><Leader>', ':lua package.loaded.init = nil<cr>:source $MYVIMRC<CR>', { noremap = true })
 
 -- Window moving
 bind('n', '<M-j>', ':resize -2<CR>', { noremap = true, silent = true})
@@ -46,6 +45,10 @@ bind('n', '<Leader>fh', '<cmd>Telescope help_tags<cr>', { noremap = false, silen
 bind('n', '<Leader>gc', '<cmd>Telescope git_commits<cr>', { noremap = false, silent = true})
 bind('n', '<Leader>gs', '<cmd>Telescope git_stash<cr>', { noremap = false, silent = true})
 bind('n', '<Leader>gb', '<cmd>Telescope git_branches<cr>', { noremap = false, silent = true})
+bind('n', '<Leader>gg', '<cmd>Telescope git_bcommits<cr>', { noremap = false, silent = true})
+bind('n', '<Leader>en', '<cmd>Telescope find_files cwd=~/.config/nvim<cr>', { noremap = false, silent = true})
+bind('n', '<C-_>', '<cmd>Telescope current_buffer_fuzzy_find theme=ivy<cr>', { noremap = false, silent = true})
+bind('n', '<C-f>', '<cmd>Telescope git_files<cr>', { noremap = false, silent = true})
 
 -- NvimTree
 bind('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap = false, silent = true})
