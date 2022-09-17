@@ -75,9 +75,9 @@ lspconfig.html.setup {
   on_attach = loading_function(),
 }
 
---[[ lspconfig.ccls.setup {
+lspconfig.ccls.setup {
 
-  -- root_dir = lspconfig.util.root_pattern("compile_commands.json", ".ccls", ".git", "Makefile", "build.sh");
+  root_dir = lspconfig.util.root_pattern("compile_commands.json", ".ccls", ".git", "Makefile", "build.sh");
   capabilities = capabilities,
   on_attach = loading_function(),
   init_options = {
@@ -89,13 +89,14 @@ lspconfig.html.setup {
       excludeArgs = { "-frounding-math" };
     };
   }
-} ]]
+}
 
-lspconfig.clangd.setup {
+--[[ lspconfig.clangd.setup {
   capabilities = capabilities,
   on_attach = loading_function(),
-  cmd = {'clang', '--header-insertion=true'}
-}
+  cmd = {'clangd', '--header-insertion=iwyu', '--clang-tidy', '--limit-references=0', '--limit-results=0'},
+  root_dir = lspconfig.util.root_pattern("compile_commands.json", ".ccls", ".git", "Makefile", "build.sh");
+} ]]
 
 -- TODO: add Java
 

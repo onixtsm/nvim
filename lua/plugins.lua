@@ -55,7 +55,7 @@ return require('packer').startup(function()
   use 'akinsho/bufferline.nvim'
   use 'moll/vim-bbye'
 
---  use 'folke/which-key.nvim'
+ use 'folke/which-key.nvim'
 -- Comments
   use 'numToStr/Comment.nvim'
 -- Comments for ts (.jsx)

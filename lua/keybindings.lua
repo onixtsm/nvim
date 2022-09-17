@@ -21,7 +21,7 @@ bind('v', '>', '>gv', { noremap = true, silent = true})
 bind('n', '!', ':!', { noremap = true} )
 
 -- build
---bind('n', '<Leader>b', ':make<CR>', { noremap = true} )
+bind('n', '<f4>', ':make<CR>', { noremap = true} )
 
 --Quickfixlist
 bind('n', '<C-Down>', '<cmd>cnext<cr>', { noremap = true, silent = true})
@@ -60,4 +60,4 @@ bind('n', '<Leader>c', ':up|Bdelete<CR>', { noremap = false, silent = true})
 bind('n', '<S-l>', ':BufferLineCycleNext<CR>', { noremap = false, silent = true})
 bind('n', '<S-h>', ':BufferLineCyclePrev<CR>', { noremap = false, silent = true})
 
-bind('n', '<Leader>l', ':lua vim.lsp.buf.formatting_sync()<CR>', { noremap = false, silent = true})
+bind('n', '<Leader>l', vim.lsp.buf.formatting, { noremap = false, silent = true})
