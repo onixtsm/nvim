@@ -1,8 +1,7 @@
 local bind = vim.keymap.set
-
+vim.g.mapleader = ' '
 -- Leader
 bind('n', '<Space>', '<NOP>', { noremap = true, silent = true})
-vim.g.mapleader = ' '
 
 -- No hl
 bind('n', '<Leader>s', ':nohl<CR>', { noremap = true, silent = true})
@@ -28,7 +27,7 @@ bind('n', '<C-Down>', '<cmd>cnext<cr>', { noremap = true, silent = true})
 bind('n', '<C-Up>', '<cmd>cprevious<cr>', { noremap = true, silent = true})
 
 -- Source
-bind('n', '<Leader><Leader>', ':lua package.loaded.init = nil<cr>:source $MYVIMRC<CR>', { noremap = true })
+bind('n', '<Leader><Leader>', ':lua package.loaded.init = nil<cr>:source $MYVIMRC<CR>', { noremap = true, desc = "Source main configuration file" })
 
 -- Window moving
 bind('n', '<M-j>', ':resize -2<CR>', { noremap = true, silent = true})
@@ -60,4 +59,4 @@ bind('n', '<Leader>c', ':up|Bdelete<CR>', { noremap = false, silent = true})
 bind('n', '<S-l>', ':BufferLineCycleNext<CR>', { noremap = false, silent = true})
 bind('n', '<S-h>', ':BufferLineCyclePrev<CR>', { noremap = false, silent = true})
 
-bind('n', '<Leader>l', vim.lsp.buf.formatting, { noremap = false, silent = true})
+bind('n', '<Leader>l', vim.lsp.buf.formatting, { noremap = false, silent = true, desc = "Formating"})

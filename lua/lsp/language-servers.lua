@@ -1,15 +1,15 @@
 local lspconfig = require('lspconfig')
 local bind = vim.keymap.set
 local loading_function = function()
-  bind('n', 'K', vim.lsp.buf.hover, { buffer = 0 })
-  bind('n', 'gd', vim.lsp.buf.definition, { buffer = 0 })
-  bind('n', 'gt', vim.lsp.buf.type_definition, { buffer = 0 })
-  bind('n', 'gi', vim.lsp.buf.implementation, { buffer = 0 })
-  bind('n', 'ga', vim.lsp.buf.code_action, { buffer = 0 })
-  bind('n', '<leader>r', vim.lsp.buf.rename, { buffer = 0 })
-  bind('n', '<leader>dj', vim.diagnostic.goto_next, { buffer = 0 })
-  bind('n', '<leader>dk', vim.diagnostic.goto_prev, { buffer = 0 })
-  bind('n', '<leader>dl', '<cmd>Telescope diagnostics<cr>', { buffer = 0 })
+  bind('n', 'K', vim.lsp.buf.hover, { buffer = 0, desc = "Hover" })
+  bind('n', 'gd', vim.lsp.buf.definition, { buffer = 0, desc = "Go to definition"})
+  bind('n', 'gt', vim.lsp.buf.type_definition, { buffer = 0, desc = "Go to type definition"})
+  bind('n', 'gi', vim.lsp.buf.implementation, { buffer = 0 , desc = "Go to implementation"})
+  bind('n', 'ga', vim.lsp.buf.code_action, { buffer = 0, desc = "Perform some kind of action (might be very useful)" })
+  bind('n', '<leader>r', vim.lsp.buf.rename, { buffer = 0, desc = "Rename" })
+  bind('n', '<leader>dj', vim.diagnostic.goto_next, { buffer = 0, desc = "Diagnostic go to next" })
+  bind('n', '<leader>dk', vim.diagnostic.goto_prev, { buffer = 0, desc = "go to previous" })
+  bind('n', '<leader>dl', '<cmd>Telescope diagnostics<cr>', { buffer = 0, desc = "Telescope diagnostics" })
 end
 
 -- Setup lspconfig.
