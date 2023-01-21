@@ -9,6 +9,7 @@ bind('n', '<Leader>s', ':nohl<CR>', { noremap = true, silent = true })
 
 bind('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 bind('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
 -- Window movement
 bind('n', '<C-h>', '<C-w>h', { noremap = true })
 bind('n', '<C-j>', '<C-w>j', { noremap = true })
@@ -19,8 +20,6 @@ bind('n', '<C-q>', '<C-w>q', { noremap = true })
 -- Nice intendings
 bind('v', '<', '<gv', { noremap = true, silent = true })
 bind('v', '>', '>gv', { noremap = true, silent = true })
-
-bind('n', '!', ':!', { noremap = true })
 
 -- build
 bind('n', '<f4>', ':make<CR>', { noremap = true })
@@ -36,10 +35,11 @@ bind('n', '<M-h>', ':vertical resize -2<CR>', { noremap = true, silent = true })
 bind('n', '<M-l>', ':vertical resize +2<CR>', { noremap = false, silent = true })
 bind('n', '<M-;>', '<C-w>=', { noremap = false, silent = true })
 
-
-
 -- Diagnostic keymaps
 bind('n', '[d', vim.diagnostic.goto_next, { buffer = 0, desc = "Diagnostic go to next" })
 bind('n', ']d', vim.diagnostic.goto_prev, { buffer = 0, desc = "go to previous" })
 bind('n', '<leader>e', vim.diagnostic.open_float)
 bind('n', '<leader>q', vim.diagnostic.setloclist)
+
+-- git
+bind('n', '<leader>gs', vim.cmd.Git, { desc = '[G]it [S]tatus' })
