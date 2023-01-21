@@ -110,3 +110,7 @@ require'nvim-tree'.setup { -- BEGIN_DEFAULT_OPTS
     },
   },
 } -- END_DEFAULT_OPTS
+vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap = false, silent = true })
+vim.keymap.set('n', '<Leader>r', ':NvimTreeRefresh<CR>', { noremap = false, silent = true })
+vim.keymap.set('n', '<Leader>n', ':NvimTreeFindFile<CR>', { noremap = false, silent = true })
+

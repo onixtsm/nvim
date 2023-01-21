@@ -162,3 +162,8 @@ bufferline.setup {
     },
   },
 }
+-- Bufferline
+vim.keymap.set('n', '<Leader>c', ':up|Bdelete<CR>', { noremap = false, silent = true })
+vim.keymap.set('n', '<S-l>', ':BufferLineCycleNext<CR>', { noremap = false, silent = true })
+vim.keymap.set('n', '<S-h>', ':BufferLineCyclePrev<CR>', { noremap = false, silent = true })
+

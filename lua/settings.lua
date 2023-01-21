@@ -12,7 +12,7 @@ v.encoding = 'utf-8'
 v.fileencoding = 'utf-8'
 v.exrc = true --execute local init.vim or init.lua
 
-v.hlsearch = true
+v.hlsearch = false
 v.incsearch = true
 v.ignorecase = true
 v.smartcase = true
@@ -39,10 +39,12 @@ v.autoindent = true -- Good auto indent
 v.tabstop = 2
 v.shiftwidth = 2
 
+vim.wo.signcolumn = 'yes'
+
 v.splitright = true
 v.splitbelow = false
 
-v.updatetime = 300
+v.updatetime = 250 
 v.timeoutlen = 0 -- no whickkey v.timeoutlen = 500
 
 v.autowrite = true
@@ -60,6 +62,16 @@ v.makeprg = './build.sh'
 cmd(':au FocusLost * :wa')
 cmd(':set iskeyword+=-')
 
+-- [[ Highlight on yank ]]
+-- See `:help vim.highlight.on_yank()`
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = highlight_group,
+  pattern = '*',
+})
 
 -- Theme
 v.cursorline = true
