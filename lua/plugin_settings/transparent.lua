@@ -1,10 +1,5 @@
 local transparent_check = function()
-  local temp = os.execute("git rev-parse --is-inside-work-tree")
-  if temp == 0 then
-    return false
-  end
-
-  return true
+  return not (os.execute("git rev-parse --is-inside-work-tree") == 0)
 end
 
 
