@@ -44,7 +44,7 @@ vim.wo.signcolumn = 'yes'
 v.splitright = true
 v.splitbelow = false
 
-v.updatetime = 250 
+v.updatetime = 250
 v.timeoutlen = 0 -- no whickkey v.timeoutlen = 500
 
 v.autowrite = true
@@ -59,8 +59,8 @@ v.path = v.path .. '**'
 v.makeprg = './build.sh'
 
 
-cmd(':au FocusLost * :wa')
-cmd(':set iskeyword+=-')
+cmd[[au FocusLost * :wa]]
+cmd[[set iskeyword+=-]]
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -77,10 +77,10 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 v.cursorline = true
 v.background = 'dark'
 v.termguicolors = true
-cmd('colorscheme gruvbox')
-cmd('highlight Normal guibg=none ctermbg=none')
-cmd('highlight clear CursorLine')
-cmd('highlight CursorLine gui=underline cterm=underline')
-cmd('autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()')
-cmd('autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()')
-cmd('autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()')
+cmd[[colorscheme gruvbox]]
+--cmd[[highlight Normal guibg=none ctermbg=none]]
+cmd[[highlight clear CursorLine]]
+cmd[[highlight CursorLine gui=underline cterm=underline]]
+cmd[[autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()]]
+cmd[[autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()]]
+cmd[[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]]
