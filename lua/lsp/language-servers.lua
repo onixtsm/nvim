@@ -20,7 +20,7 @@ local on_attach = function(_, bufnr)
 
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-  nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+  nmap('<C-m>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
   -- Lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -34,22 +34,24 @@ local on_attach = function(_, bufnr)
 end
 -- Setup lspconfig.
 local servers = {
-  -- clangd = {},
-  -- gopls = {},
-  -- pyright = {},
-  -- rust_analyzer = {},
-  -- tsserver = {},
+    -- clangd = {},
+    -- gopls = {},
+    -- pyright = {},
+    -- rust_analyzer = {},
+    -- tsserver = {},
 
-  sumneko_lua = {
-    Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false },
+    lua_ls = {
+        Lua = {
+            workspace = { checkThirdParty = false },
+            telemetry = { enable = false },
+        },
     },
-  },
 }
 
 -- Setup neovim lua configuration
-require('neodev').setup()
+require('neodev').setup({
+    library = { plugins = { "nvim-dap-ui" }, types = true },
+})
 --
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -58,21 +60,106 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 -- Setup mason so it can manage external tooling
 require('mason').setup()
 
+local params = {
+    ran = false,
+    executable = '',
+    args = ''
+}
+require('dapui').setup()
+local dap, dapui = require("dap"), require("dapui")
+dap.listeners.after.event_initialized["dapui_config"] = function()
+  dapui.open()
+end
+dap.listeners.before.event_terminated["dapui_config"] = function()
+  dapui.close()
+  params.ran = false
+end
+dap.listeners.before.event_exited["dapui_config"] = function()
+  dapui.close()
+  params.ran = false
+end
+require("mason-nvim-dap").setup({
+    automatic_setup = true
+})
+
+local get_args = function()
+  local argument_string = vim.fn.input({ prompt = 'Program arguments: ' })
+  return vim.fn.split(argument_string, " ", true)
+end
+
+local get_executable = function()
+  return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+end
+
+require('telescope').load_extension('dap')
+
+require 'mason-nvim-dap'.setup_handlers {
+    function(source_name)
+      -- all sources with no handler get passed here
+      -- Keep original functionality of `automatic_setup = true`
+      require('mason-nvim-dap.automatic_setup')(source_name)
+    end,
+    cppdbg = function(source_name)
+      dap.adapters.cppdbg = {
+          id = 'cppdbg',
+          type = 'executable',
+          command = 'OpenDebugAD7',
+      }
+
+      dap.configurations.c = {
+          {
+              name = 'Launch file',
+              type = 'cppdbg',
+              request = 'launch',
+              program = function()
+                if (not params.ran) then
+                  params.executable = get_executable()
+                  params.args = get_args()
+                  params.ran = true
+                end
+                return params.executable
+              end,
+              cwd = '${workspaceFolder}',
+              stopAtEntry = true,
+              args = function()
+                if (not params.ran) then
+                  params.executable = get_executable()
+                  params.args = get_args()
+                  params.ran = true
+                end
+                return params.args
+              end
+          },
+          {
+              name = 'Attach to gdbserver :1234',
+              type = 'cppdbg',
+              request = 'launch',
+              MIMode = 'gdb',
+              miDebuggerServerAddress = 'localhost:1234',
+              miDebuggerPath = '/usr/bin/gdb',
+              cwd = '${workspaceFolder}',
+              program = function()
+                return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+              end,
+          },
+      }
+    end,
+}
 -- Ensure the servers above are installed
 local mason_lspconfig = require 'mason-lspconfig'
 
 mason_lspconfig.setup {
-  ensure_installed = vim.tbl_keys(servers),
+    ensure_installed = vim.tbl_keys(servers),
 }
 
 mason_lspconfig.setup_handlers {
-  function(server_name)
-    require('lspconfig')[server_name].setup {
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = servers[server_name],
-    }
-  end,
+    function(server_name)
+      require('lspconfig')[server_name].setup {
+          capabilities = capabilities,
+          on_attach = on_attach,
+          settings = servers[server_name],
+      }
+    end,
 }
 
 -- Turn on lsp status information
