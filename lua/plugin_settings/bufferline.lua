@@ -3,8 +3,8 @@ local bufferline = require('bufferline')
 bufferline.setup {
   options = {
     numbers = "none", -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
-    close_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
-    right_mouse_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
+    close_command = "close! %d", -- can be a string | function, see "Mouse actions"
+    right_mouse_command = "close! %d", -- can be a string | function, see "Mouse actions"
     left_mouse_command = "buffer %d", -- can be a string | function, see "Mouse actions"
     middle_mouse_command = nil, -- can be a string | function, see "Mouse actions"
     -- NOTE: this plugin is designed with this icon in mind,
@@ -163,7 +163,7 @@ bufferline.setup {
   },
 }
 -- Bufferline
-vim.keymap.set('n', '<Leader>c', ':up|Bdelete<CR>', { noremap = false, silent = true })
+vim.keymap.set('n', '<Leader>cc', ':close<CR>', { noremap = false, silent = true })
 vim.keymap.set('n', '<S-l>', ':BufferLineCycleNext<CR>', { noremap = false, silent = true })
 vim.keymap.set('n', '<S-h>', ':BufferLineCyclePrev<CR>', { noremap = false, silent = true })
 
