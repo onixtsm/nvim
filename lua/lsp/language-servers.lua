@@ -1,4 +1,17 @@
-local lspconfig = require('lspconfig')
+local setContains = function(set, value)
+  local contains = false
+  for _, v in pairs(set) do
+    if type(value) == 'string' then
+      if v == value then contains = true end
+      return contains
+    end
+    for _, z in pairs(value) do
+      if v == z then contains = true end
+      return contains
+    end
+  end
+end
+
 local on_attach = function(client, bufnr)
   local nmap = function(keys, func, desc)
     if desc then
@@ -38,7 +51,27 @@ local on_attach = function(client, bufnr)
   nmap('<leader>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, '[W]orkspace [L]ist Folders')
+
+  if client.config.root_dir ~= nil then
+    vim.api.nvim_set_current_dir(client.config.root_dir)
+  end
+
+  print(setContains(client.config.filetypes, { "c", "cpp" }))
+
+  local build_files = {
+    { "build.sh",                                       "./build.sh" },
+    { "Makefile",                                       "make" },
+    { { "c", "cpp", "objc", "objcpp", "cuda", "proto" }, "make" },
+  }
+
+  for _, v in pairs(build_files) do
+    if vim.fn.findfile(v[1], client.config.root_dir .. ';') or setContains(client.config.filetypes, v[1]) then
+      vim.o.makeprg = v[2]
+      break
+    end
+  end
 end
+
 -- Setup lspconfig.
 local servers = {
   -- clangd = {},
@@ -95,7 +128,7 @@ local get_args = function()
 end
 
 local get_executable = function()
-  return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+  return vim.fn.input({ prompt = 'Path to executable: ' .. vim.fn.getcwd() .. '/', completion = 'file' })
 end
 
 require('telescope').load_extension('dap')
