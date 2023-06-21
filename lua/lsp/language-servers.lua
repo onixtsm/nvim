@@ -59,8 +59,8 @@ local on_attach = function(client, bufnr)
   print(setContains(client.config.filetypes, { "c", "cpp" }))
 
   local build_files = {
-    { "build.sh",                                       "./build.sh" },
-    { "Makefile",                                       "make" },
+    { "build.sh",                                        "./build.sh" },
+    { "Makefile",                                        "make" },
     { { "c", "cpp", "objc", "objcpp", "cuda", "proto" }, "make" },
   }
 
@@ -118,9 +118,6 @@ dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close()
   params.ran = false
 end
-require("mason-nvim-dap").setup({
-  automatic_setup = true
-})
 
 local get_args = function()
   local argument_string = vim.fn.input({ prompt = 'Program arguments: ' })
@@ -131,60 +128,64 @@ local get_executable = function()
   return vim.fn.input({ prompt = 'Path to executable: ' .. vim.fn.getcwd() .. '/', completion = 'file' })
 end
 
+require("mason-nvim-dap").setup({
+  automatic_setup = true,
+  handlers = {
+    function(source_name)
+      -- all sources with no handler get passed here
+      -- Keep original functionality of `automatic_setup = true`
+      require('mason-nvim-dap.automatic_setup')(source_name)
+    end,
+    cppdbg = function(source_name)
+      dap.adapters.cppdbg = {
+        id = 'cppdbg',
+        type = 'executable',
+        command = 'OpenDebugAD7',
+      }
+
+      dap.configurations.c = {
+        {
+          name = 'Launch file',
+          type = 'cppdbg',
+          request = 'launch',
+          program = function()
+            if (not params.ran) then
+              params.executable = get_executable()
+              params.args = get_args()
+              params.ran = true
+            end
+            return params.executable
+          end,
+          cwd = '${workspaceFolder}',
+          stopAtEntry = true,
+          args = function()
+            if (not params.ran) then
+              params.executable = get_executable()
+              params.args = get_args()
+              params.ran = true
+            end
+            return params.args
+          end
+        },
+        {
+          name = 'Attach to gdbserver :1234',
+          type = 'cppdbg',
+          request = 'launch',
+          MIMode = 'gdb',
+          miDebuggerServerAddress = 'localhost:1234',
+          miDebuggerPath = '/usr/bin/gdb',
+          cwd = '${workspaceFolder}',
+          program = function()
+            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+          end,
+        },
+      }
+    end,
+  }
+})
+
 require('telescope').load_extension('dap')
 
-require 'mason-nvim-dap'.setup_handlers {
-  function(source_name)
-    -- all sources with no handler get passed here
-    -- Keep original functionality of `automatic_setup = true`
-    require('mason-nvim-dap.automatic_setup')(source_name)
-  end,
-  cppdbg = function(source_name)
-    dap.adapters.cppdbg = {
-      id = 'cppdbg',
-      type = 'executable',
-      command = 'OpenDebugAD7',
-    }
-
-    dap.configurations.c = {
-      {
-        name = 'Launch file',
-        type = 'cppdbg',
-        request = 'launch',
-        program = function()
-          if (not params.ran) then
-            params.executable = get_executable()
-            params.args = get_args()
-            params.ran = true
-          end
-          return params.executable
-        end,
-        cwd = '${workspaceFolder}',
-        stopAtEntry = true,
-        args = function()
-          if (not params.ran) then
-            params.executable = get_executable()
-            params.args = get_args()
-            params.ran = true
-          end
-          return params.args
-        end
-      },
-      {
-        name = 'Attach to gdbserver :1234',
-        type = 'cppdbg',
-        request = 'launch',
-        MIMode = 'gdb',
-        miDebuggerServerAddress = 'localhost:1234',
-        miDebuggerPath = '/usr/bin/gdb',
-        cwd = '${workspaceFolder}',
-        program = function()
-          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-        end,
-      },
-    }
-  end,
-}
 -- Ensure the servers above are installed
 local mason_lspconfig = require 'mason-lspconfig'
 

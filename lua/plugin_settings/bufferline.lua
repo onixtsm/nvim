@@ -11,8 +11,8 @@ bufferline.setup {
     -- and so changing this is NOT recommended, this is intended
     -- as an escape hatch for people who cannot bear it for whatever reason
     indicator = {style = "icon", icon = "▎"},
-    buffer_close_icon = "",
-    -- buffer_close_icon = '',
+    --buffer_close_icon = "",
+    buffer_close_icon = '',
     modified_icon = "●",
     close_icon = "",
     -- close_icon = '',
@@ -70,7 +70,8 @@ bufferline.setup {
   },
   highlights = {
     fill = {
-      fg = { attribute = "fg", highlight = "#ff0000" },
+      -- fg = { attribute = "fg", highlight = "#ff0000" },
+      fg = { attribute = "fg", highlight = "Tabline" },
       bg = { attribute = "bg", highlight = "TabLine" },
     },
     background = {
@@ -162,8 +163,8 @@ bufferline.setup {
     },
   },
 }
+
 -- Bufferline
 vim.keymap.set('n', '<Leader>cc', ':close<CR>', { noremap = false, silent = true })
 vim.keymap.set('n', '<S-l>', ':BufferLineCycleNext<CR>', { noremap = false, silent = true })
 vim.keymap.set('n', '<S-h>', ':BufferLineCyclePrev<CR>', { noremap = false, silent = true })
-
