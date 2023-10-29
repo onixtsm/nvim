@@ -31,6 +31,22 @@ local kind_icons = {
   TypeParameter = "",
 }
 -- find more here: https://www.nerdfonts.com/cheat-sheet
+--
+local t = luasnip.text_node
+local i = luasnip.insert_node
+local s = luasnip.snippet
+local fmta = require("luasnip.extras.fmt").fmta
+luasnip.add_snippets("c", {
+  s("main", fmta([[
+    int main(<args>) {
+      printf("Hello, seaman\n");
+      return 0;
+    }
+  ]], {
+    args = i(1, "int argc, char **argv")
+  })
+  )
+})
 
 cmp.setup {
   snippet = {
@@ -54,8 +70,8 @@ cmp.setup {
     end,
   },
   sources = {
-    { name = "nvim_lsp" },
     { name = "luasnip" },
+    { name = "nvim_lsp" },
     { name = "path" },
     { name = "buffer", keyword_length = 5, max_item_count = 5 },
   },

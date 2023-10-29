@@ -1,5 +1,6 @@
 -- Setup mason so it can manage external tooling
 require('mason').setup()
+local lsp = require('lspconfig')
 local on_attach = function(client, bufnr)
   local nmap = function(keys, func, desc)
     if desc then
@@ -39,6 +40,10 @@ local on_attach = function(client, bufnr)
   nmap('<leader>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, '[W]orkspace [L]ist Folders')
+
+  if client.config.root_dir ~= nil then
+    client.config.root_dir = lsp.util.root_patter("Makefile", "build.sh", ".git", "compile_command.js")
+  end
 
   if client.config.root_dir ~= nil then
     vim.api.nvim_set_current_dir(client.config.root_dir)

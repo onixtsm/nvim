@@ -18,7 +18,7 @@ require('packer').startup(function(use)
       'williamboman/mason-lspconfig.nvim',
 
       -- Useful status updates for LSP
-      {'j-hui/fidget.nvim', tag = 'legacy'},
+      { 'j-hui/fidget.nvim', tag = 'legacy' },
       -- Additional lua configuration
       'folke/neodev.nvim'
     }
@@ -89,6 +89,9 @@ require('packer').startup(function(use)
   use "lukas-reineke/indent-blankline.nvim"
   use 'tpope/vim-sleuth'
   use 'kyazdani42/nvim-web-devicons'
+
+  --Skeleton
+  use "motosir/skel-nvim"
 
   if is_bootstrap then
     require('packer').sync()
