@@ -165,6 +165,6 @@ bufferline.setup {
 }
 
 -- Bufferline
-vim.keymap.set('n', '<Leader>cc', ':close<CR>', { noremap = false, silent = true })
+vim.keymap.set('n', '<Leader>cc', ':bd<CR>', { noremap = false, silent = true })
 vim.keymap.set('n', '<S-l>', ':BufferLineCycleNext<CR>', { noremap = false, silent = true })
 vim.keymap.set('n', '<S-h>', ':BufferLineCyclePrev<CR>', { noremap = false, silent = true })
