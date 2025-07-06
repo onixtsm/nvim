@@ -52,11 +52,15 @@ vim.opt.mouse = "a"
 
 vim.g.editorconfig = true
 
+ -- Autosave on FocusLost
+vim.api.nvim_create_autocmd("FocusLost", {
+  callback = function()
+    local buf = vim.api.nvim_get_current_buf()
+    local name = vim.api.nvim_buf_get_name(buf)
+    local modifiable = vim.api.nvim_buf_get_option(buf, "modifiable")
 
-
-
-
-
-
-
-
+    if name ~= "" and modifiable then
+      vim.api.nvim_command("silent! write")
+    end
+  end
+})
