@@ -58,10 +58,13 @@ end, { desc = "Copy file path to clipboard" })
 
 -- Toggle LSP diagnostics visibility
 local isLspDiagnosticsVisible = true
-vim.keymap.set("n", "<leader>lx", function()
+vim.keymap.set("n", "<leader>.", function()
   isLspDiagnosticsVisible = not isLspDiagnosticsVisible
   vim.diagnostic.config({
     virtual_text = isLspDiagnosticsVisible,
     underline = isLspDiagnosticsVisible
   })
 end, { desc = "Toggle LSP diagnostics" })
+
+vim.keymap.set("n", "j", "gj", opts)
+vim.keymap.set("n", "k", "gk", opts)

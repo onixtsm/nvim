@@ -171,6 +171,7 @@ return {
     lspconfig.clangd.setup({
       cmd = {
         "clangd",
+        "--log=verbose",
         "--background-index",
         "--clang-tidy",
         "--header-insertion=iwyu",
@@ -183,6 +184,13 @@ return {
         completeUnimported = true,
         clangdFileStatus = true,
       }
+    })
+    util = require("lspconfig/util")
+
+    lspconfig.gopls.setup({
+      cmd = {"gopls"},
+      filetypes = {"go", "gomod", "gowork", "gotmpl"},
+      root_dir = util.root_pattern("go.work", "go.mod", ".git")
     })
 
 
